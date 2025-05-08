@@ -8,7 +8,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Activity, Code, Star, TrendingUp, Users, Zap } from "lucide-react";
+import {
+  Activity,
+  Code,
+  Star,
+  TrendingUp,
+  Users,
+  Zap,
+  Mic,
+  Headphones,
+} from "lucide-react";
 import Link from "next/link";
 
 export default async function Dashboard() {
@@ -25,7 +34,9 @@ export default async function Dashboard() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Total Projects</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Total Projects
+            </CardTitle>
             <Code className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -42,9 +53,7 @@ export default async function Dashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">1,234</div>
-            <p className="text-xs text-muted-foreground mt-1">
-              +15% increase
-            </p>
+            <p className="text-xs text-muted-foreground mt-1">+15% increase</p>
           </CardContent>
         </Card>
         <Card>
@@ -66,9 +75,7 @@ export default async function Dashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">89%</div>
-            <p className="text-xs text-muted-foreground mt-1">
-              +5% this week
-            </p>
+            <p className="text-xs text-muted-foreground mt-1">+5% this week</p>
           </CardContent>
         </Card>
       </div>
@@ -84,13 +91,15 @@ export default async function Dashboard() {
           </CardHeader>
           <CardContent>
             <div className="h-[200px] flex items-end gap-2">
-              {[40, 25, 45, 30, 60, 75, 65, 45, 50, 65, 70, 80].map((height, i) => (
-                <div
-                  key={i}
-                  className="bg-primary/10 hover:bg-primary/20 rounded-md w-full transition-colors"
-                  style={{ height: `${height}%` }}
-                />
-              ))}
+              {[40, 25, 45, 30, 60, 75, 65, 45, 50, 65, 70, 80].map(
+                (height, i) => (
+                  <div
+                    key={i}
+                    className="bg-primary/10 hover:bg-primary/20 rounded-md w-full transition-colors"
+                    style={{ height: `${height}%` }}
+                  />
+                )
+              )}
             </div>
             <div className="flex justify-between mt-2 text-xs text-muted-foreground">
               <span>Jan</span>
@@ -112,9 +121,7 @@ export default async function Dashboard() {
         <Card className="lg:col-span-3">
           <CardHeader>
             <CardTitle>Recent Achievements</CardTitle>
-            <CardDescription>
-              Latest milestones reached
-            </CardDescription>
+            <CardDescription>Latest milestones reached</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -155,24 +162,44 @@ export default async function Dashboard() {
         <Card>
           <CardHeader>
             <CardTitle>Quick Actions</CardTitle>
-            <CardDescription>
-              Common tasks and shortcuts
-            </CardDescription>
+            <CardDescription>Common tasks and shortcuts</CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
-            <Button asChild variant="outline" className="w-full justify-start gap-2">
-              <Link href="/dashboard/projects">
-                <Code className="h-4 w-4" />
-                New Project
+            <Button
+              asChild
+              variant="outline"
+              className="w-full justify-start gap-2"
+            >
+              <Link href="/dashboard/podcast">
+                <Mic className="h-4 w-4" />
+                Generate Podcast
               </Link>
             </Button>
-            <Button asChild variant="outline" className="w-full justify-start gap-2">
+            <Button
+              asChild
+              variant="outline"
+              className="w-full justify-start gap-2"
+            >
+              <Link href="/dashboard/saved-podcasts">
+                <Headphones className="h-4 w-4" />
+                Saved Podcasts
+              </Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              className="w-full justify-start gap-2"
+            >
               <Link href="/dashboard/finance">
                 <TrendingUp className="h-4 w-4" />
                 View Analytics
               </Link>
             </Button>
-            <Button asChild variant="outline" className="w-full justify-start gap-2">
+            <Button
+              asChild
+              variant="outline"
+              className="w-full justify-start gap-2"
+            >
               <Link href="/dashboard/settings">
                 <Users className="h-4 w-4" />
                 Invite Team
@@ -191,32 +218,41 @@ export default async function Dashboard() {
               {[
                 {
                   title: "New Feature Released",
-                  description: "Enhanced project analytics and reporting tools are now available.",
-                  time: "2 hours ago"
+                  description:
+                    "Enhanced project analytics and reporting tools are now available.",
+                  time: "2 hours ago",
                 },
                 {
                   title: "System Update",
-                  description: "Performance improvements and bug fixes deployed.",
-                  time: "5 hours ago"
+                  description:
+                    "Performance improvements and bug fixes deployed.",
+                  time: "5 hours ago",
                 },
                 {
                   title: "Community Milestone",
-                  description: "Over 1,000 projects created using Nextjs Starter Kit!",
-                  time: "1 day ago"
-                }
+                  description:
+                    "Over 1,000 projects created using Nextjs Starter Kit!",
+                  time: "1 day ago",
+                },
               ].map((update, i) => (
                 <div key={i} className="flex justify-between gap-4">
                   <div>
                     <p className="text-sm font-medium">{update.title}</p>
-                    <p className="text-sm text-muted-foreground">{update.description}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {update.description}
+                    </p>
                   </div>
-                  <p className="text-xs text-muted-foreground whitespace-nowrap">{update.time}</p>
+                  <p className="text-xs text-muted-foreground whitespace-nowrap">
+                    {update.time}
+                  </p>
                 </div>
               ))}
             </div>
           </CardContent>
           <CardFooter>
-            <Button variant="ghost" className="w-full">View All Updates</Button>
+            <Button variant="ghost" className="w-full">
+              View All Updates
+            </Button>
           </CardFooter>
         </Card>
       </div>

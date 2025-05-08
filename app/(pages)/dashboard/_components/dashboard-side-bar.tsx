@@ -1,15 +1,17 @@
-"use client"
+"use client";
 
-import clsx from 'clsx'
+import clsx from "clsx";
 import {
   Banknote,
   Folder,
   HomeIcon,
   Settings,
-  LucideIcon
-} from "lucide-react"
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+  LucideIcon,
+  Mic,
+  Headphones,
+} from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface NavItem {
   label: string;
@@ -21,28 +23,42 @@ const navItems: NavItem[] = [
   {
     label: "Overview",
     href: "/dashboard",
-    icon: HomeIcon
+    icon: HomeIcon,
+  },
+  {
+    label: "Podcast Generator",
+    href: "/dashboard/podcast",
+    icon: Mic,
+  },
+  {
+    label: "Saved Podcasts",
+    href: "/dashboard/saved-podcasts",
+    icon: Headphones,
   },
   {
     label: "Finance",
     href: "/dashboard/finance",
-    icon: Banknote
+    icon: Banknote,
   },
   {
     label: "Settings",
     href: "/dashboard/settings",
-    icon: Settings
-  }
-]
+    icon: Settings,
+  },
+];
 
 export default function DashboardSideBar() {
   const pathname = usePathname();
-  
+
   return (
     <div className="min-[1024px]:block hidden w-64 border-r h-full bg-background">
       <div className="flex h-full flex-col">
         <div className="flex h-[3.45rem] items-center border-b px-4">
-          <Link prefetch={true} className="flex items-center gap-2 font-semibold hover:cursor-pointer" href="/">
+          <Link
+            prefetch={true}
+            className="flex items-center gap-2 font-semibold hover:cursor-pointer"
+            href="/"
+          >
             <span>Nextjs Starter Kit</span>
           </Link>
         </div>
@@ -67,5 +83,5 @@ export default function DashboardSideBar() {
         </nav>
       </div>
     </div>
-  )
+  );
 }

@@ -1,17 +1,29 @@
-"use client"
+"use client";
 
-import ModeToggle from '@/components/mode-toggle'
-import { Button } from '@/components/ui/button'
-import { Dialog, DialogClose } from '@/components/ui/dialog'
-import { Separator } from '@/components/ui/separator'
-import { SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
-import { UserProfile } from '@/components/user-profile'
-import { api } from '@/convex/_generated/api'
-import { HamburgerMenuIcon } from '@radix-ui/react-icons'
-import { useAction, useQuery } from 'convex/react'
-import { Banknote, Folder, HomeIcon, Settings } from 'lucide-react'
-import Link from 'next/link'
-import { ReactNode } from 'react'
+import ModeToggle from "@/components/mode-toggle";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogClose } from "@/components/ui/dialog";
+import { Separator } from "@/components/ui/separator";
+import {
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { UserProfile } from "@/components/user-profile";
+import { api } from "@/convex/_generated/api";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { useAction, useQuery } from "convex/react";
+import {
+  Banknote,
+  Folder,
+  HomeIcon,
+  Settings,
+  Mic,
+  Headphones,
+} from "lucide-react";
+import Link from "next/link";
+import { ReactNode } from "react";
 
 export default function DashboardTopNav({ children }: { children: ReactNode }) {
   const subscription = useQuery(api.subscriptions.getUserSubscription);
@@ -21,7 +33,7 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
   const handleManageSubscription = async () => {
     try {
       const result = await getDashboardUrl({
-        customerId: subscription?.customerId!
+        customerId: subscription?.customerId!,
       });
       if (result?.url) {
         window.location.href = result.url;
@@ -57,6 +69,22 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
                 </Link>
               </DialogClose>
               <DialogClose asChild>
+                <Link href="/dashboard/podcast">
+                  <Button variant="outline" className="w-full">
+                    <Mic className="mr-2 h-4 w-4" />
+                    Podcast Generator
+                  </Button>
+                </Link>
+              </DialogClose>
+              <DialogClose asChild>
+                <Link href="/dashboard/saved-podcasts">
+                  <Button variant="outline" className="w-full">
+                    <Headphones className="mr-2 h-4 w-4" />
+                    Saved Podcasts
+                  </Button>
+                </Link>
+              </DialogClose>
+              <DialogClose asChild>
                 <Link href="/dashboard/finance">
                   <Button variant="outline" className="w-full">
                     <Banknote className="mr-2 h-4 w-4" />
@@ -77,12 +105,14 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
           </SheetContent>
         </Dialog>
         <div className="flex justify-center items-center gap-2 ml-auto">
-          <Button variant={"outline"} onClick={handleManageSubscription}>Manage Subscription</Button>
+          <Button variant={"outline"} onClick={handleManageSubscription}>
+            Manage Subscription
+          </Button>
           {<UserProfile />}
           <ModeToggle />
         </div>
       </header>
       {children}
     </div>
-  )
+  );
 }
